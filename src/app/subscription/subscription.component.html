@@ -1,0 +1,54 @@
+<mat-toolbar color="primary">
+    <span>Subscription Form</span>
+</mat-toolbar>
+<form [formGroup]="subscriptionForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Subscription Name</mat-label>
+                <input matInput type="text" placeholder="Subscription name" formControlName="name">
+                <mat-error>Subscription name is required.</mat-error>
+            </mat-form-field>
+          
+            <mat-form-field appearance="outline">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-error>Date is required.</mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Start Time</mat-label>
+                <input matInput [matDatepicker]="startpicker" formControlName="startTime" [min]="todayDate">
+                <mat-error>Start time is required.</mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="startpicker"></mat-datepicker-toggle>
+                <mat-datepicker #startpicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End Time</mat-label>
+                <input matInput [matDatepicker]="endpicker" formControlName="endTime" [min]="todayDate">
+                <mat-error>End time is required.</mat-error>
+                <mat-datepicker-toggle matIconSuffix [for]="endpicker"></mat-datepicker-toggle>
+                <mat-datepicker #endpicker></mat-datepicker>
+            </mat-form-field>
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Start Time</mat-label>
+                <input matInput type="text" placeholder="start time" formControlName="startTime">
+                <mat-error>time is required.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>End Time</mat-label>
+                <input matInput type="text" placeholder="end time" formControlName="endTime">
+                <mat-error>time is required.</mat-error>
+            </mat-form-field> -->
+           
+        </div>
+       
+    </div>
+    <div mat-dialog-actions class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update' : 'Save'}}</button>
+    </div>
+</form>
